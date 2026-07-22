@@ -6,6 +6,6 @@
 @import './utilities.css';
 
 body {
-    background-color: var(--clr-primary-dk);
+    background-color: hsl(from var(--clr-primary-dk) h s 20%);
     color: var(--clr-light);
 }

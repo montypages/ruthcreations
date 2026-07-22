@@ -3,11 +3,13 @@
 p {
     font-family: var(--font-sans);
     font-size: var(--size-1);
+    color: var(--clr-secondary)
 }
 
 h1, h2, h3, h4, h5 {
     font-family: var(--font-display);
     font-weight: bold;
+    line-height: 1;
 }
 
 h3 {
@@ -27,5 +29,5 @@ h1 {
 }
 
 a {
-    color: var(--clr-secondary);
+    color: var(--clr-secondary-dk);
 }
