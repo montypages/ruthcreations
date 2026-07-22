@@ -1,0 +1,31 @@
+/* HEADINGS, PARAGRAPHS */
+
+p {
+    font-family: var(--font-sans);
+    font-size: var(--size-1);
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: bold;
+}
+
+h3 {
+    font-size: var(--size-2);
+}
+
+h2 {
+    font-size: var(--size-3);
+}
+
+h1 {
+    font-size: var(--size-4);
+}
+
+.title {
+    font-size: var(--size-5);
+}
+
+a {
+    color: var(--clr-secondary);
+}

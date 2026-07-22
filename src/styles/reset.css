@@ -1,0 +1,10 @@
+/* CSS RESET */
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}

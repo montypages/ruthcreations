@@ -1,0 +1,23 @@
+/* COLORS, FONTS, and SPACING */
+
+:root {
+    --font-sans: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
+    --font-display: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+
+    --size--1: clamp(0.75rem, 0.7159rem + 0.1515vw, 0.8333rem);
+    --size-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+    --size-1: clamp(1.6875rem, 1.6108rem + 0.3409vw, 1.875rem);
+    --size-2: clamp(2.5313rem, 2.4162rem + 0.5114vw, 2.8125rem);
+    --size-3: clamp(3.7969rem, 3.6243rem + 0.767vw, 4.2188rem);
+    --size-4: clamp(5.6953rem, 5.4364rem + 1.1506vw, 6.3281rem);
+    --size-5: clamp(8.543rem, 8.1547rem + 1.7259vw, 9.4922rem);
+
+    --clr-primary-dk: #0081a7ff;
+    --clr-primary: #00afb9ff;
+    --clr-light: #fdfcdcff;
+    --clr-secondary: #fed9b7ff;
+    --clr-secondary-dk: #f07167ff;
+
+    --bg-img: url('/ruth-creations/src/lib/assets/diagmonds-light.png');
+    --bg-img-dk: url('/ruth-creations/src/lib/assets/diagmonds.png');
+}
