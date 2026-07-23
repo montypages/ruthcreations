@@ -7,3 +7,7 @@
 <Hero />
 <About />
 <Categories />
+
+<style>
+
+</style>

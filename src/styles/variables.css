@@ -3,6 +3,10 @@
 :root {
     --font-sans: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
     --font-display: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+    --font-display-1: "Fredericka the Great", serif;
+    --font-display-2: "Cabin Sketch", sans-serif;
+    --font-display-3: "Snowburst One", system-ui;
+    --font-display-4: "Emilys Candy", serif;
 
     --size--1: clamp(0.75rem, 0.7159rem + 0.1515vw, 0.8333rem);
     --size-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
