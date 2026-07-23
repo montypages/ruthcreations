@@ -4,11 +4,11 @@
 
 <nav>
 	<div class="logo">
-		<a href="#">
+		<a href="/">
 			<img src={logo} width="100" alt="Ruth" />
 		</a>
 	</div>
-	<h3><a href="#">Ruth Creations</a></h3>
+	<h3><a href="/">Ruth Creations</a></h3>
 	<ul class="nav-links">
 		<li class="nav-link"><a href="#">Cooking</a></li>
 		<li class="nav-link"><a href="#">Fiber Arts</a></li>
