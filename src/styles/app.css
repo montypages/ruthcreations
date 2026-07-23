@@ -6,6 +6,7 @@
 @import './utilities.css';
 
 body {
-    background-color: hsl(from var(--clr-primary-dk) h s 20%);
+    background-color: hsl(from var(--clr-pink) h 50% l);
+    background-image: url('$lib/assets/asfalt-light.png');
     color: var(--clr-light);
 }

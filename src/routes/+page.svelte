@@ -1,2 +1,9 @@
-<h1>Ruth Creations</h1>
-<p>See what Ruth has made!</p>
+<script>
+	import About from "$lib/components/home/About.svelte";
+	import Categories from "$lib/components/home/Categories.svelte";
+    import Hero from "$lib/components/home/Hero.svelte";
+</script>
+
+<Hero />
+<About />
+<Categories />

@@ -1,1 +1,13 @@
 /* CONTAINERS, GRIDS */
+
+.container {
+    margin: 0 auto;
+    width: min(1200px, 90%);
+}
+
+.auto-grid {
+    --grid-size: 250px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-size, 250px), 100%), 1fr));
+    gap: 1rem;
+}
