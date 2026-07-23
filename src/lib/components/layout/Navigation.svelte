@@ -21,7 +21,6 @@
 		display: flex;
 		align-items: center;
         gap: 0.5em;
-        background-color: hsl(from var(--clr-primary) h s l / 0.2);
 	}
 
 	.logo {

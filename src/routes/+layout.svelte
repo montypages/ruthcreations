@@ -14,8 +14,23 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Emilys+Candy&family=Fredericka+the+Great&family=Snowburst+One&display=swap" rel="stylesheet">
 </svelte:head>
 
-<Header />
+<div class="full-page">
 
-{@render children()}
+	<Header />
+	
+	<main>
+		{@render children()}
+	</main>
+	
+	<Footer />
 
-<Footer />
+</div>
+
+
+<style>
+	.full-page {
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+		min-height: 100vh;
+	}
+</style>
