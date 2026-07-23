@@ -10,10 +10,8 @@
 	</div>
 	<h3><a href="/">Ruth Creations</a></h3>
 	<ul class="nav-links">
-		<li class="nav-link"><a href="#">Cooking</a></li>
-		<li class="nav-link"><a href="#">Fiber Arts</a></li>
-		<li class="nav-link"><a href="#">Builds</a></li>
-		<li class="nav-link"><a href="#">Artwork</a></li>
+		<li class="nav-link"><a href="/about">About</a></li>
+		<li class="nav-link"><a href="/blog">Blog</a></li>
 	</ul>
 </nav>
 
@@ -25,6 +23,15 @@
         gap: 0.5em;
         background-color: hsl(from var(--clr-primary) h s l / 0.2);
 	}
+
+	.logo {
+		width: 40px;
+	}
+
+	h3 {
+		margin: 0;
+	}
+
 	.nav-links {
 		list-style-type: none;
 		margin: 0;
@@ -43,7 +50,14 @@
 		font-family: var(--font-sans);
 		padding: 0.5em 2em;
 		&:hover {
-			outline: 3px solid var(--clr-primary);
+			text-decoration: underline;
+		}
+	}
+
+	.nav-link {
+		transition: scale 240ms ease;
+		&:hover {
+			scale: 1.05;
 		}
 	}
 </style>
