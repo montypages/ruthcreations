@@ -1,12 +1,20 @@
 <script>
-    let { post } = $props();
+	let {
+		href = '#',
+		src,
+		alt,
+		imgX = 'center',
+		imgY = 'center',
+		cardTitle,
+		cardDescription
+	} = $props();
 </script>
 
 <div class="card">
-	<a href="/blog/{post.slug}">
-		<h3>{post.title}</h3>
-		<img src={post.image.src} alt={post.image.alt ? post.image.alt : post.title} style="--imgX: {post.image.imgX}; --imgY: {post.image.imgY}" />
-		<p>{post.description}</p>
+	<a {href}>
+		<h3>{cardTitle}</h3>
+		<img {src} {alt} style="--imgX: {imgX}; --imgY: {imgY}" />
+		<p>{cardDescription}</p>
 	</a>
 </div>
 
