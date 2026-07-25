@@ -17,11 +17,13 @@
     --size-5: clamp(8.543rem, 8.1547rem + 1.7259vw, 9.4922rem);
 
     --clr-primary-dk: #0081a7ff;
+    --clr-primary-dk-50: #0080a780;
     --clr-primary: #00afb9ff;
     --clr-light: #fdfcdcff;
     --clr-secondary: #fed9b7ff;
     --clr-secondary-dk: #f07167ff;
     --clr-pink: #c22b7b;
+    --clr-pink-dk: #b23b7a;
 
     --bg-img: url('/ruth-creations/src/lib/assets/diagmonds-light.png');
     --bg-img-dk: url('/ruth-creations/src/lib/assets/diagmonds.png');

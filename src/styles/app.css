@@ -7,7 +7,7 @@
 @import './blog.css';
 
 body {
-    background-color: hsl(from var(--clr-pink) h 50% l);
-    background-image: url('$lib/assets/asfalt-light.png');
+    background-color: var(--clr-pink-dk);
+    background-image: url('/images/asfalt-light.png');
     color: var(--clr-light);
 }

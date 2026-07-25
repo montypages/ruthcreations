@@ -4,14 +4,14 @@
 
 <footer>
     <div class="container">
-        <p>Come back and see what I make next!</p>
+        <p>Come back soon!</p>
     </div>
 </footer>
 
 
 <style>
     footer {
-        background-color: hsl(from var(--clr-primary-dk) h s l / 0.5);
+        background-color: var(--clr-primary-dk-50);
         min-height: 200px;
         margin-top: 2rem;
     }

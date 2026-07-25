@@ -28,6 +28,15 @@
         height: 50%;
     }
 
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title {
+        flex-shrink: 1;
+    }
+
     img {
         height: 100%;
     }

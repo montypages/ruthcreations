@@ -29,6 +29,28 @@ h1 {
     font-size: var(--size-5);
 }
 
+@media (max-width: 768px) {
+    .title {
+        font-size: var(--size-3);
+    }
+
+    h1 {
+        font-size: var(--size-3);
+    }
+
+    h2 {
+        font-size: var(--size-2);
+    }
+
+    h3 {
+        font-size: var(--size-1);
+    }
+
+    p {
+        font-size: var(--size-0);
+    }
+}
+
 a {
     color: var(--clr-secondary-dk);
 }

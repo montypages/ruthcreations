@@ -1,4 +1,6 @@
 <script>
+	import HeartButton from "./HeartButton.svelte";
+
     let { post } = $props();
 </script>
 
@@ -8,6 +10,7 @@
 		<img src={post.image.src} alt={post.image.alt ? post.image.alt : post.title} style="--imgX: {post.image.imgX}; --imgY: {post.image.imgY}" />
 		<p>{post.description}</p>
 	</a>
+	<HeartButton {post} />
 </div>
 
 <style>

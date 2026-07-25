@@ -15,6 +15,8 @@ export const posts = [
 
         <p>Today I made a little crocheted coaster. It was just the right size for my cup. I picked bright blue yarn because it reminds me of the sky. At first my stitches were a little wiggly, but I kept going. Soon my coaster started to look round and neat. Now my table has a cozy place for my drink, and every time I see it, I smile because I made it myself.</p>
         `,
+        hearts: 5,
+        publishedAt: "2026-07-25",
     },
     {
         id: 2,
@@ -51,6 +53,8 @@ export const posts = [
 
         <p class="blog-p">I wrapped it around my arm to see how long it was. It wasn't a big project, but it showed me that even one little line can be the start of something amazing.</p>
         `,
+        hearts: 2,
+        publishedAt: "2026-07-25",
     },
     {
         id: 3,
@@ -73,6 +77,8 @@ export const posts = [
         
         <p>I wove the yarn over and under until it looked like a tiny blanket. Every new color made the pattern even more fun. When I was finished, I held up my little weaving and felt proud. It's amazing what you can make with a little cardboard and a big imagination.</p>
         `,
+        hearts: 8,
+        publishedAt: "2026-07-25",
     },
     {
         id: 4,
@@ -109,6 +115,8 @@ export const posts = [
 
         <p>I colored them red, yellow, and purple. Then I added green stems and a bright blue sky. My picture looked like a happy garden, and it made me feel like spring had come inside my house.</p>
         `,
+        hearts: 4,
+        publishedAt: "2026-07-25",
     },
     {
         id: 5,
@@ -124,5 +132,7 @@ export const posts = [
         
         <p>I found a small wood post that needed some color. I painted the top blue and added little white stars. Then I painted red and white stripes all the way down. I had to be careful to keep the lines nice and straight. When the paint dried, it looked bright and cheerful. I put it in the yard, and it reminded me that homemade decorations can make any place feel special.</p>
         `,
+        hearts: 5,
+        publishedAt: "2026-07-25",
     },
 ]
