@@ -1,0 +1,1 @@
+// Create a function that compresses, converts, and uploads blog images to the databse

@@ -1,0 +1,31 @@
+
+.blog-img {
+    display: block;
+	background-color: #eee;
+	padding: 1em;
+	margin: 0 auto;
+	width: min(480px, 80%);
+	/* aspect-ratio: 4 / 3; */
+	object-fit: cover;
+	object-position: var(--imgX, center) var(--imgY, center);
+	border-radius: 3px;
+	box-shadow:
+    0 0 20px hsl(0 0 0 / 0.2),
+    inset 1px 1px white,
+    inset -1px -1px #ddd;
+	rotate: 3deg;
+}
+
+.blog-figure figcaption {
+    text-align: center;
+    color: var(--clr-light);
+    font-family: var(--font-sans);
+    text-shadow: 0 0 3px hsl(0 0 0 / 0.9),
+                 0 0 10px hsl(0 0 0 / 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.blog-figure figcaption:empty {
+    display: none;
+}

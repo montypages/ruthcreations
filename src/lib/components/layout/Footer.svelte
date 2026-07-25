@@ -13,6 +13,7 @@
     footer {
         background-color: hsl(from var(--clr-primary-dk) h s l / 0.5);
         min-height: 200px;
+        margin-top: 2rem;
     }
 
     p {

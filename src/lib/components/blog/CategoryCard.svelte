@@ -1,20 +1,12 @@
 <script>
-	let {
-		href = '#',
-		src,
-		alt,
-		imgX = 'center',
-		imgY = 'center',
-		cardTitle,
-		cardDescription
-	} = $props();
+	let { category } = $props();
 </script>
 
 <div class="card">
-	<a {href}>
-		<h3>{cardTitle}</h3>
-		<img {src} {alt} style="--imgX: {imgX}; --imgY: {imgY}" />
-		<p>{cardDescription}</p>
+	<a href="/blog/categories/{category.slug}">
+		<h3>{category.name}</h3>
+		<img src={category.img.src} alt={category.img.alt} />
+		<p>{category.description}</p>
 	</a>
 </div>
 
@@ -53,7 +45,7 @@
 
 	h3 {
 		margin: 0;
-        font-size: var(--size-1);
+        font-size: var(--size-2);
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -64,7 +56,7 @@
 
 	p {
 		color: var(--clr-primary-dk);
-        font-size: var(--size-0);
+        font-size: var(--size-1);
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;

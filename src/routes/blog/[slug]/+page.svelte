@@ -23,9 +23,4 @@
     article {
         margin-bottom: 2rem;
     }
-
-    img {
-        display: block;
-        margin: 0 auto;
-    }
 </style>

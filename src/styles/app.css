@@ -4,6 +4,7 @@
 @import './layout.css';
 @import './forms.css';
 @import './utilities.css';
+@import './blog.css';
 
 body {
     background-color: hsl(from var(--clr-pink) h 50% l);
