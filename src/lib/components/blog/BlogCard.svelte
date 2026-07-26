@@ -7,7 +7,7 @@
 <div class="card">
 	<a href="/blog/{post.slug}">
 		<h3>{post.title}</h3>
-		<img src={post.image.src} alt={post.image.alt ? post.image.alt : post.title} style="--imgX: {post.image.imgX}; --imgY: {post.image.imgY}" />
+		<img src={post.image.src} alt={post.image.alt ? post.image.alt : post.title} />
 		<p>{post.description}</p>
 	</a>
 	<HeartButton {post} />

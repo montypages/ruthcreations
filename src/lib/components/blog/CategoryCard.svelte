@@ -5,7 +5,7 @@
 <div class="card">
 	<a href="/blog/categories/{category.slug}">
 		<h3>{category.name}</h3>
-		<img src={category.img.src} alt={category.img.alt} />
+		<img src={category.img.src} alt={category.name} />
 		<p>{category.description}</p>
 	</a>
 </div>

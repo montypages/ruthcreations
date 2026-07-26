@@ -33,10 +33,6 @@
         flex-direction: column;
     }
 
-    .title {
-        flex-shrink: 1;
-    }
-
     img {
         height: 100%;
     }
