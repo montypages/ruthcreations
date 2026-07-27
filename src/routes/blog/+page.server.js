@@ -1,10 +1,8 @@
 import { supabase } from '$lib/supabase/supabaseClient';
-import { getPosts } from '$lib/servers/posts';
 import { getCategories } from '$lib/servers/categories';
 
 export async function load() {
-    return {
-      posts: await getPosts(),
-      categories: await getCategories()
-    }
+	return {
+		categories: await getCategories()
+	};
 }

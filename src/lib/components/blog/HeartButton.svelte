@@ -1,31 +1,75 @@
 <script>
-import { hasHearted, addHeart, removeHeart, getHeartCount } from '$lib/utils/hearts';
+	import { hasHearted, addHeart, removeHeart, getHeartCount } from '$lib/utils/hearts';
 	import heartEmpty from '$lib/assets/heart-empty.svg';
 	import heartFull from '$lib/assets/heart-filled.svg';
 
-	let { post } = $props();
+	let { postId, initialCount, heartClr="hsl(41, 21%, 85%)" } = $props();
 
-	let count = $state(getHeartCount(post));
+	let count = $state(initialCount);
 	let liked = $state(false);
+	let loading = $state(false);
 
-    $effect(() => {
-        liked = hasHearted(post.id);
-    });
+	$effect(() => {
+		checkIfLiked();
+	});
 
-	function toggleHeart() {
-		if (liked) {
-            removeHeart(post.id);
-			count--;
-		} else {
-            addHeart(post.id);
-			count++;
+	function getSessionId() {
+		let sessionId = sessionStorage.getItem('session_id');
+
+		if (!sessionId) {
+			sessionId = crypto.randomUUID();
+			sessionStorage.setItem('session_id', sessionId);
 		}
 
-		liked = !liked;
+		return sessionId;
+	}
+
+	async function toggleHeart() {
+		loading = true;
+		const sessionId = getSessionId();
+
+		if (liked) {
+			const response = await fetch('/api/hearts', {
+				method: 'DELETE',
+				body: JSON.stringify({
+					postId,
+					sessionId
+				})
+			});
+
+			if (response.ok) {
+				liked = false;
+				count = Math.max(0, count - 1);
+			}
+		} else {
+			const response = await fetch('/api/hearts', {
+				method: 'POST',
+				body: JSON.stringify({
+					postId,
+					sessionId
+				})
+			});
+
+			if (response.ok) {
+				liked = true;
+				count++;
+			}
+		}
+		loading = false;
+	}
+
+	async function checkIfLiked() {
+		const sessionId = getSessionId();
+
+		const response = await fetch(`/api/hearts?postId=${postId}&sessionId=${sessionId}`);
+
+		const data = await response.json();
+
+		liked = data.liked;
 	}
 </script>
 
-<button class:liked onclick={toggleHeart} aria-label="Add heart">
+<button class:liked onclick={toggleHeart} style="--heart-clr: {heartClr};" aria-label="Add heart" disabled={loading}>
 	{#if !liked}
 		<svg
 			width="24"
@@ -66,14 +110,14 @@ import { hasHearted, addHeart, removeHeart, getHeartCount } from '$lib/utils/hea
 
 <style>
 	button {
-        --heart-clr: cream;
+		--heart-clr: hsl(41, 21%, 85%);
 		display: flex;
 		align-items: center;
-		gap: var(--space-2);
+		gap: var(--space-2, 0.5em);
 		background: none;
 		border: none;
 		cursor: pointer;
 		font-size: 1rem;
-        color: hsl(41, 21%, 85%);
+		color: var(--heart-clr);
 	}
 </style>

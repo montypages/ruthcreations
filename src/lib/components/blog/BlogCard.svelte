@@ -10,7 +10,7 @@
 		<img src={post.image.src} alt={post.image.alt ? post.image.alt : post.title} />
 		<p>{post.description}</p>
 	</a>
-	<HeartButton {post} />
+	<HeartButton postId={post.id} initialCount={post.heart_count} heartClr="hsl(41, 21%, 55%)" />
 </div>
 
 <style>

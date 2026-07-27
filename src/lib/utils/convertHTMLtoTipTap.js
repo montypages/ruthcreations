@@ -1,13 +1,42 @@
 import { generateJSON } from '@tiptap/html';
 import StarterKit from '@tiptap/starter-kit';
+import Image from '@tiptap/extension-image';
 
-const html = `
+const html = 
+       `
+        <div class="blog-figure">
+            <img src="/sample-blogs/flower.jpeg" alt="Hand-drawn flower." class="blog-img" />
+            <p class="blog-img-caption"></p>
+        </div>
         
-        <p>I found a small wood post that needed some color. I painted the top blue and added little white stars. Then I painted red and white stripes all the way down. I had to be careful to keep the lines nice and straight. When the paint dried, it looked bright and cheerful. I put it in the yard, and it reminded me that homemade decorations can make any place feel special.</p>
-        `;
+        <p>I grabbed my paper and some crayons to draw flowers. The first flower was big and round.</p>
+        
+        <div class="blog-figure">
+            <img class="blog-img" src="/sample-blogs/flower2.jpeg" alt="Hand drawn flower." />
+            <p class="blog-img-caption">It's always good to use a reference. I saw a picture of a flower nearby.</p>
+        </div>
+        
+        <p>The second one had pointy petals.</p>
+        
+        <div class="blog-figure">
+            <img class="blog-img" src="/sample-blogs/flower3.jpeg" alt="Hand drawn flower." />
+            <p class="blog-img-caption"></p>
+        </div>
+        
+        <p>The third flower was tiny, but it was my favorite.</p>
+        
+        <figure class="blog-figure">
+            <img class="blog-img" src="/sample-blogs/flower.jpeg" alt="Hand drawn flower." />
+            <p class="blog-img-caption"></p>
+        </figure>
+
+        <p>I colored them red, yellow, and purple. Then I added green stems and a bright blue sky. My picture looked like a happy garden, and it made me feel like spring had come inside my house.</p>
+        `
+        ;
 
 const json = generateJSON(html, [
-	StarterKit
+	StarterKit,
+        Image
 ]);
 
 

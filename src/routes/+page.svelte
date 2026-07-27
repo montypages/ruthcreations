@@ -9,12 +9,17 @@
 
 <Hero />
 <About />
-<Categories />
+<Categories categories={data.categories} />
 
-<div class="auto-grid container">
-	{#each data.posts as post }
-		<BlogCard {post} />
-	{/each}
+<div class="container padding-top-bottom">
+	<h2>Latest Posts</h2>
+	<div class="auto-grid">
+		{#each data.posts as post, i }
+			{#if i < 4}
+			<BlogCard {post} />
+			{/if}
+		{/each}
+	</div>
 </div>
 
 <style>

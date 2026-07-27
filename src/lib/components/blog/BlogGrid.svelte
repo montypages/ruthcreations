@@ -1,10 +1,10 @@
 <script>
 	import BlogCard from "./BlogCard.svelte";
-    import { posts } from "$lib/data/posts";
 
+    let { posts } = $props();
 </script>
 
-<div class="auto-grid" style="--grid-size:320px">
+<div class="auto-grid" style="--grid-size:280px">
 
     {#each posts as post}
         <BlogCard {post} />

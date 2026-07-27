@@ -1,24 +1,25 @@
 <script>
 	import HeartButton from "$lib/components/blog/HeartButton.svelte";
+	import { tiptapToHTML } from "$lib/utils/tiptap";
 
 	let { data } = $props();
+	const postContent = tiptapToHTML(data.post.content);
 
-	const { post } = data;
 </script>
 
 <article>
 
 	<div class="blog-hero">
-		<h1>{post.title}</h1>
+		<h1>{data.post.title}</h1>
 		<img
-			src={post.image.src}
-			alt={post.image.alt}
+			src={data.post.image.src}
+			alt={data.post.image.alt}
 		>
-		<HeartButton {post} />
+		<HeartButton postId={data.post.id} initialCount={data.post.heart_count} />
 	</div>
 
     <div class="container">
-        {@html post.content}
+        {@html postContent}
     </div>
 
 </article>

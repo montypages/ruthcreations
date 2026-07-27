@@ -16,8 +16,9 @@
 	rotate: 3deg;
 }
 
-.blog-figure figcaption {
+.blog-img-caption {
     text-align: center;
+    font-size: var(--size--1);
     color: var(--clr-light);
     font-family: var(--font-sans);
     text-shadow: 0 0 3px hsl(0 0 0 / 0.9),
@@ -26,6 +27,6 @@
     z-index: 1;
 }
 
-.blog-figure figcaption:empty {
+.blog-img-caption:empty {
     display: none;
 }
