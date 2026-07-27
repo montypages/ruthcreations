@@ -3,7 +3,7 @@
 	import heartEmpty from '$lib/assets/heart-empty.svg';
 	import heartFull from '$lib/assets/heart-filled.svg';
 
-	let { postId, initialCount, heartClr="hsl(41, 21%, 85%)" } = $props();
+	let { postId, initialCount, heartClr = 'hsl(41, 21%, 85%)' } = $props();
 
 	let count = $state(initialCount);
 	let liked = $state(false);
@@ -17,7 +17,7 @@
 		let sessionId = sessionStorage.getItem('session_id');
 
 		if (!sessionId) {
-			sessionId = crypto.randomUUID();
+			sessionId = crypto.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
 			sessionStorage.setItem('session_id', sessionId);
 		}
 
@@ -69,7 +69,13 @@
 	}
 </script>
 
-<button class:liked onclick={toggleHeart} style="--heart-clr: {heartClr};" aria-label="Add heart" disabled={loading}>
+<button
+	class:liked
+	onclick={toggleHeart}
+	style="--heart-clr: {heartClr};"
+	aria-label="Add heart"
+	disabled={loading}
+>
 	{#if !liked}
 		<svg
 			width="24"
