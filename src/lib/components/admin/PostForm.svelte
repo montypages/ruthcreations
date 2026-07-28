@@ -1,24 +1,39 @@
 <script>
+	import TipTapEditor from './TipTapEditor.svelte';
+	import { goto } from '$app/navigation';
+	import { createSlug } from '$lib/utils/createSlugs';
+
 	let { post = null, categories = [] } = $props();
 	let title = $state(post?.title ?? '');
 	let slug = $state(post?.slug ?? '');
 	let description = $state(post?.description ?? '');
-	let selectedCategories = $state(post?.categories.map(c => c.id) ?? []);
+	let selectedCategories = $state(post?.categories.map((c) => c.id) ?? []);
 	let content = $state(
 		post?.content ?? {
 			type: 'doc',
-			content: []
+			content: [
+				{
+					type: 'paragraph'
+				}
+			]
 		}
 	);
-	let published = $state(false);
+	let saveAction = $state('');
+	let slugEdited = $state(!!post);
 
-	async function submitPost() {
+	$effect(() => {
+		if (!slugEdited) {
+			slug = createSlug(title);
+		}
+	});
+
+	async function submitPost(publish) {
 		const postData = {
 			title,
 			slug,
 			description,
 			content,
-			published,
+			published: publish,
 			categories: selectedCategories
 		};
 
@@ -26,15 +41,27 @@
 
 		const method = post ? 'PUT' : 'POST';
 
-		const response = await fetch(url, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(postData)
-		});
+		try {
+			const response = await fetch(url, {
+				method,
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(postData)
+			});
 
-		const result = await response.json();
+			if (!response.ok) {
+				// Handle the error however you'd like
+				console.error(await response.text());
+				return;
+			}
+
+			const result = await response.json();
+
+			await goto('/admin');
+		} catch (err) {
+			console.error(err);
+		}
 	}
 </script>
 
@@ -51,7 +78,12 @@
 
 	<label>
 		Slug
-		<input bind:value={slug} />
+		<input
+			bind:value={slug}
+			oninput={() => {
+				slugEdited = true;
+			}}
+		/>
 	</label>
 
 	<label>
@@ -59,10 +91,9 @@
 		<textarea bind:value={description}></textarea>
 	</label>
 
-	<label>
-		Content
-		<textarea bind:value={content}></textarea>
-	</label>
+	<label for="content"> Content </label>
+
+	<TipTapEditor id="content" {content} updateContent={(value) => (content = value)} />
 
 	<h2>Categories</h2>
 
@@ -74,12 +105,9 @@
 		</label>
 	{/each}
 
-	<label>
-		<input type="checkbox" bind:checked={published} />
-		Publish post
-	</label>
+	<button type="button" onclick={() => submitPost(false)}> Save Draft </button>
 
-	<button> Create Post </button>
+	<button type="button" onclick={() => submitPost(true)}> Publish </button>
 </form>
 
 <style>
