@@ -1,6 +1,7 @@
 <script>
 	import { supabase } from '$lib/supabase/supabaseClient';
 	import { goto } from '$app/navigation';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	let email = $state('');
 	let password = $state('');
@@ -49,9 +50,7 @@
 			/>
 		</label>
 
-		<button disabled={loading}>
-			{loading ? 'Signing In...' : 'Sign In'}
-		</button>
+		<Button onclick="submit" btnText={loading ? 'Signing In...' : 'Sign In'} disabled={loading} />
 
 		<a href="#">forgot password</a>
 	</form>

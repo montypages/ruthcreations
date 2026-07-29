@@ -1,5 +1,5 @@
 <script>
-	let { onclick, btnText, btnSize = "var(--size-1)" } = $props();
+	let { onclick, btnText, btnSize = "var(--size-1)", disabled = false } = $props();
 </script>
 
 <!-- NOISE DISTORTION MAP -->
@@ -28,7 +28,7 @@
 	</defs>
 </svg>
 
-<button {onclick} style="--btnSize: {btnSize};">{btnText}</button>
+<button {onclick} style="--btnSize: {btnSize};" {disabled}>{btnText}</button>
 
 <style>
 	button {

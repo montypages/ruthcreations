@@ -1,5 +1,5 @@
 <script>
-	import logo from '$lib/assets/Ruth.jpeg';
+	import logo from '$lib/assets/bird.png';
 	import { goto } from '$app/navigation';
 	import Button from '../ui/Button.svelte';
 

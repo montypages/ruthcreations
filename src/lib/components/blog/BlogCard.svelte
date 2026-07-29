@@ -10,11 +10,17 @@
 		<img src={post.image.src} alt={post.image.alt ? post.image.alt : post.title} />
 		<p>{post.description}</p>
 	</a>
-	<HeartButton postId={post.id} initialCount={post.heart_count} heartClr="hsl(41, 21%, 55%)" />
+	<div class="heart">
+
+		<HeartButton postId={post.id} initialCount={post.heart_count} heartClr="hsl(41, 21%, 55%)" />
+	</div>
 </div>
 
 <style>
 	.card {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 		padding: 1em;
 		background-color: var(--clr-light);
 		color: var(--clr-primary-dk);
