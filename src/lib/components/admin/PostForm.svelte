@@ -2,12 +2,14 @@
 	import TipTapEditor from './TipTapEditor.svelte';
 	import { goto } from '$app/navigation';
 	import { createSlug } from '$lib/utils/createSlugs';
+	import PrimaryImageUpload from './PrimaryImageUpload.svelte';
+	import Button from '../ui/Button.svelte';
 
 	let { post = null, categories = [] } = $props();
 	let title = $state(post?.title ?? '');
 	let slug = $state(post?.slug ?? '');
 	let description = $state(post?.description ?? '');
-	let selectedCategories = $state(post?.categories.map((c) => c.id) ?? []);
+	let selectedCategories = $state(post?.categories?.map((c) => c.id) ?? []);
 	let content = $state(
 		post?.content ?? {
 			type: 'doc',
@@ -20,6 +22,8 @@
 	);
 	let saveAction = $state('');
 	let slugEdited = $state(!!post);
+	let imgSrc = $state(post?.img_src ?? '');
+	let imgAlt = $state(post?.img_alt ?? '');
 
 	$effect(() => {
 		if (!slugEdited) {
@@ -33,6 +37,8 @@
 			slug,
 			description,
 			content,
+			imgSrc,
+			imgAlt,
 			published: publish,
 			categories: selectedCategories
 		};
@@ -86,6 +92,8 @@
 		/>
 	</label>
 
+	<PrimaryImageUpload bind:imgSrc bind:imgAlt />
+
 	<label>
 		Description
 		<textarea bind:value={description}></textarea>
@@ -95,19 +103,18 @@
 
 	<TipTapEditor id="content" {content} updateContent={(value) => (content = value)} />
 
-	<h2>Categories</h2>
+	<div class="category-container">
+		<h2>Categories</h2>
+		{#each categories as category}
+			<label class="category">
+				<input type="checkbox" value={category.id} bind:group={selectedCategories} />
+				{category.name}
+			</label>
+		{/each}
+	</div>
 
-	{#each categories as category}
-		<label>
-			<input type="checkbox" value={category.id} bind:group={selectedCategories} />
-
-			{category.name}
-		</label>
-	{/each}
-
-	<button type="button" onclick={() => submitPost(false)}> Save Draft </button>
-
-	<button type="button" onclick={() => submitPost(true)}> Publish </button>
+	<Button onclick={() => submitPost(false)} btnText="Save Draft" />
+	<Button onclick={() => submitPost(true)} btnText="Publish" />
 </form>
 
 <style>
@@ -120,5 +127,17 @@
 
 	label {
 		display: grid;
+	}
+
+	.category {
+		display: block;
+		font-size: var(--size-0);
+		padding-left: 1em;
+	}
+
+	h2 {
+		font-size: var(--size-1);
+		margin: 0;
+		line-height: 1.2;
 	}
 </style>

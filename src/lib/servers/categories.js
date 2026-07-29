@@ -1,4 +1,4 @@
-import { supabase } from "$lib/supabase/supabaseClient";
+
 
 function formatCategory(category) {
     return {
@@ -10,7 +10,7 @@ function formatCategory(category) {
     }
 }
 
-export async function getCategories() {
+export async function getCategories(supabase) {
     const { data: categories, error } = await supabase.from('categories').select('*');
 
     if(error) {
@@ -25,7 +25,7 @@ export async function getCategories() {
     return formattedCategories;
 }
 
-export async function getCategoriesBySlug(slug) {
+export async function getCategoriesBySlug(supabase, slug) {
     const { data: category, error } = await supabase.from('categories').select('*').eq('slug', slug).single();
 
     if(error) {

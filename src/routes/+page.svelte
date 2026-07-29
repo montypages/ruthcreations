@@ -3,6 +3,7 @@
 	import About from "$lib/components/home/About.svelte";
 	import Categories from "$lib/components/home/Categories.svelte";
     import Hero from "$lib/components/home/Hero.svelte";
+	import Button from "$lib/components/ui/Button.svelte";
 
 	let { data } = $props();
 </script>

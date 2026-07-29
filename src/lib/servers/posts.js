@@ -1,4 +1,6 @@
-import { supabase } from '$lib/supabase/supabaseClient';
+
+import { deleteBlogImage, deleteBlogImages } from './storage';
+import { getImageUrls } from '$lib/utils/tiptapimages';
 
 function formatPost(post) {
 	return {
@@ -14,7 +16,7 @@ function formatPost(post) {
 
 const postWithCategories = `*, post_categories(categories(id, name, slug)), hearts(count)`;
 
-export async function getPosts() {
+export async function getPosts(supabase) {
 	const { data: posts, error } = await supabase.from('posts').select(postWithCategories);
 
 	if (error) {
@@ -29,7 +31,7 @@ export async function getPosts() {
 	return formattedPosts;
 }
 
-export async function getPostBySlug(slug) {
+export async function getPostBySlug(supabase, slug) {
 	const { data: post, error } = await supabase
 		.from('posts')
 		.select(postWithCategories)
@@ -45,7 +47,7 @@ export async function getPostBySlug(slug) {
 	return formattedPost;
 }
 
-export async function getPostById(id) {
+export async function getPostById(supabase, id) {
 	const { data: post, error } = await supabase
 		.from('posts')
 		.select(postWithCategories)
@@ -61,7 +63,7 @@ export async function getPostById(id) {
 	return formattedPost;
 }
 
-export async function createPost(post) {
+export async function createPost(supabase, post) {
 	// 1. Create the post
 	const { data: newPost, error: postError } = await supabase
 		.from('posts')
@@ -70,7 +72,8 @@ export async function createPost(post) {
 			slug: post.slug,
 			description: post.description,
 			content: post.content,
-			published: post.published ?? false
+			img_src: post.imgSrc,
+			img_alt: post.imgAlt
 		})
 		.select()
 		.single();
@@ -97,27 +100,39 @@ export async function createPost(post) {
 	return newPost;
 }
 
-export async function getAdminPosts() {
+export async function getAdminPosts(supabase) {
 	const { data, error } = await supabase
 		.from('posts')
-		.select(`
+		.select(
+			`
 			id,
 			title,
 			slug,
 			description,
+			img_src,
+			img_alt,
 			published,
 			created_at
-		`)
+		`
+		)
 		.order('created_at', { ascending: false });
 
 	if (error) {
 		throw error;
 	}
 
-	return data;
+	const formattedPosts = data.map((post) => ({
+		...post,
+		image: {
+			src: post.img_src,
+			alt: post.img_alt
+		}
+	}));
+
+	return formattedPosts;
 }
 
-export async function updatePost(id, post) {
+export async function updatePost(supabase, id, post) {
 	// 1. Update the post itself
 	const { data: updatedPost, error: postError } = await supabase
 		.from('posts')
@@ -126,7 +141,8 @@ export async function updatePost(id, post) {
 			slug: post.slug,
 			description: post.description,
 			content: post.content,
-			published: post.published
+			img_src: post.imgSrc,
+			img_alt: post.imgAlt
 		})
 		.eq('id', id)
 		.select()
@@ -136,17 +152,12 @@ export async function updatePost(id, post) {
 		throw postError;
 	}
 
-
 	// 2. Remove existing category relationships
-	const { error: deleteError } = await supabase
-		.from('post_categories')
-		.delete()
-		.eq('post_id', id);
+	const { error: deleteError } = await supabase.from('post_categories').delete().eq('post_id', id);
 
 	if (deleteError) {
 		throw deleteError;
 	}
-
 
 	// 3. Add the current categories
 	if (post.categories?.length) {
@@ -155,29 +166,39 @@ export async function updatePost(id, post) {
 			category_id: categoryId
 		}));
 
-		const { error: categoryError } = await supabase
-			.from('post_categories')
-			.insert(categoryRows);
+		const { error: categoryError } = await supabase.from('post_categories').insert(categoryRows);
 
 		if (categoryError) {
 			throw categoryError;
 		}
 	}
 
-
 	return updatedPost;
 }
-export async function deletePost(id, post) {
-	// 1. Delete the post itself
-	const { error } = await supabase
+
+export async function deletePost(supabase, id) {
+	// Get the post
+	const { data: existingPost, error: fetchError } = await supabase
 		.from('posts')
-		.delete()
-		.eq('id', id);
+		.select(`img_src, content`)
+		.eq('id', id)
+		.single();
+
+	if (fetchError) throw fetchError;
+
+	// Delete images from the post contents
+	const imageUrls = [existingPost.img_src, ...getImageUrls(existingPost.content)];
+
+	const uniqueUrls = [...new Set(imageUrls)].filter(Boolean);
+
+	await deleteBlogImages(supabase, uniqueUrls);
+
+	// Delete the post
+	const { error } = await supabase.from('posts').delete().eq('id', id);
 
 	if (error) {
 		throw error;
 	}
-
 
 	return true;
 }

@@ -6,7 +6,7 @@
 
 <h1>Edit Post</h1>
 
-<PostForm 
+<PostForm
 	post={data.post}
 	categories={data.categories}
 />

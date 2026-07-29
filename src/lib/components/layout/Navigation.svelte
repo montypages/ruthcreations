@@ -1,5 +1,9 @@
 <script>
 	import logo from '$lib/assets/Ruth.jpeg';
+	import { goto } from '$app/navigation';
+	import Button from '../ui/Button.svelte';
+
+
 </script>
 
 <nav>
@@ -10,8 +14,10 @@
 	</div>
 	<h3><a href="/">Ruth Creations</a></h3>
 	<ul class="nav-links">
-		<li class="nav-link"><a href="/about">About</a></li>
-		<li class="nav-link"><a href="/blog">Blog</a></li>
+		<!-- <li class="nav-link"><a href="/about">About</a></li>
+		<li class="nav-link"><a href="/blog">Blog</a></li> -->
+		<li><Button onclick={() => {goto('/about');}} btnText="About" btnSize="var(--size-0)" /> </li>
+		<li><Button onclick={() => {goto('/blog');}} btnText="Blog" btnSize="var(--size-0)" /> </li>
 	</ul>
 </nav>
 
@@ -37,6 +43,7 @@
 		margin-left: auto;
 		padding: 0;
 		display: flex;
+		gap: 1rem;
 		justify-content: space-around;
 	}
 

@@ -1,7 +1,5 @@
-import { supabase } from '$lib/supabase/supabaseClient';
 
-
-export async function getHeartCount(postId) {
+export async function getHeartCount(supabase, postId) {
 	const { count, error } = await supabase
 		.from('hearts')
 		.select('*', { count: 'exact', head: true })
@@ -13,7 +11,7 @@ export async function getHeartCount(postId) {
 }
 
 
-export async function hasHearted(postId, sessionId) {
+export async function hasHearted(supabase, postId, sessionId) {
 	const { data, error } = await supabase
 		.from('hearts')
 		.select('id')
@@ -26,7 +24,7 @@ export async function hasHearted(postId, sessionId) {
 	return data.length > 0;
 }
 
-export async function addHeart(postId, sessionId) {
+export async function addHeart(supabase, postId, sessionId) {
 
 	const { error } = await supabase
 		.from('hearts')
@@ -38,7 +36,7 @@ export async function addHeart(postId, sessionId) {
 	if (error) throw error;
 }
 
-export async function removeHeart(postId, sessionId) {
+export async function removeHeart(supabase, postId, sessionId) {
 	const { error } = await supabase
 		.from('hearts')
 		.delete()

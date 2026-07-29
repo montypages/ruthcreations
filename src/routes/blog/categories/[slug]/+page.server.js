@@ -1,11 +1,10 @@
 import { error } from '@sveltejs/kit';
-import { supabase } from '$lib/supabase/supabaseClient.js';
 import { getCategoriesBySlug } from '$lib/servers/categories.js';
 import { getPosts } from '$lib/servers/posts.js';
 
-export async function load({ params }) {
-	const category = await getCategoriesBySlug(params.slug);
-	const posts = await getPosts();
+export async function load({ locals, params }) {
+	try {const category = await getCategoriesBySlug(locals.supabase, params.slug);
+	const posts = await getPosts(locals.supabase);
 
 	if (!category) {
 		throw error(404, 'Category not found');
@@ -18,5 +17,8 @@ export async function load({ params }) {
 	return {
 		category,
 		posts: filteredPosts
-	};
+	};} catch (err) {
+		console.error(err);
+		throw err;
+	}
 }

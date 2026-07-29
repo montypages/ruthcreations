@@ -1,8 +1,8 @@
-import { supabase } from "$lib/supabase/supabaseClient";
+
 import { getAdminPosts } from "$lib/servers/posts";
 
-export async function load() {
+export async function load({ locals }) {
     return {
-        posts: await getAdminPosts()
+        posts: await getAdminPosts(locals.supabase)
     }
 }

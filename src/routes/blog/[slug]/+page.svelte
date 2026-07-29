@@ -32,13 +32,14 @@
 	.blog-hero {
 		position: relative;
 		overflow: hidden;
-		& img {
-			position: absolute;
-			width: 100%;
-			top: -50%;
-			transform: translate(0 50%);
-			z-index: -1;
-			opacity: 25%;
-		}
+	}
+
+	.blog-hero img {
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		transform: translate(0, -50%);
+		z-index: -1;
+		opacity: 25%;
 	}
 </style>
