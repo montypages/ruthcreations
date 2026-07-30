@@ -3,3 +3,7 @@
 .padding-top-bottom {
     padding: 2rem 0;
 }
+
+.flex-center {
+    justify-content: center;
+}

@@ -52,7 +52,7 @@
 
 		<Button onclick="submit" btnText={loading ? 'Signing In...' : 'Sign In'} disabled={loading} />
 
-		<a href="#">forgot password</a>
+		<!-- <a href="#">forgot password</a> -->
 	</form>
 
 	{#if error}

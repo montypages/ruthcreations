@@ -18,6 +18,7 @@
 <style>
     .hero-wrapper {
         background-color: hsl(0 0 0 / 0.2);
+        overflow: hidden;
     }
 
     .hero {

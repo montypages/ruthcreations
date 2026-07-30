@@ -11,3 +11,10 @@
     grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-size, 250px), 100%), 1fr));
     gap: 1rem;
 }
+
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 1em;
+}

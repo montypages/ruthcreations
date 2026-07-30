@@ -4,7 +4,7 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <svelte:head>
@@ -22,7 +22,7 @@
 		{@render children()}
 	</main>
 	
-	<Footer />
+	<Footer categories={data.categories} />
 
 </div>
 
