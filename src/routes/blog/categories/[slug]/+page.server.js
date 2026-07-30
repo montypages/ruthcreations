@@ -3,7 +3,6 @@ import { getCategoriesBySlug } from '$lib/servers/categories.js';
 import { getPosts } from '$lib/servers/posts.js';
 
 export async function load({ locals, params }) {
-	console.log("Loading category: ", params.slug);
 
 	try {const category = await getCategoriesBySlug(locals.supabase, params.slug);
 	const posts = await getPosts(locals.supabase);
