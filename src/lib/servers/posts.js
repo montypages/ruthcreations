@@ -1,6 +1,6 @@
 
 import { deleteBlogImage, deleteBlogImages } from './storage';
-import { getImageUrls } from '$lib/utils/tiptapimages';
+import { getImageUrls } from '$lib/utils/tiptapImages';
 
 function formatPost(post) {
 	return {
